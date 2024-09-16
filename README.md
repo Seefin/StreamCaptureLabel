@@ -23,3 +23,26 @@ My Changes
     display isn't messed up by being accidentally shoved into an HTML
     context, rather than to prevent attacks.
 *   Mild generics
+
+Running
+-------
+The `MainApplication` class shows a simple example of using the CaptureLabel component
+in an application to capture data sent to System.out or System.err. To add a CaptureLabel,
+instantiate the object and add it to the `JFrame` as you desire; in the example application
+I've attached it to the bottom of my main window.
+
+To actually recieve and consume data, you need to create a CaptureStream and have data fed into
+it. This is achieved in the example application by wrapping it in a `PrintStream`and then calling
+`System.setOut` to redirect the standard output to the CaptureStream.
+
+
+```java
+//In the parent window, create and add label
+CaptureLabel<String> label = new CaptureLabel<>();
+getContentPane().add(label,BorderLayout.SOUTH);
+//Attach to a CaptureStream, with prefix 'STDOUT' and the normal System.out as the 
+// alternative stream
+CaptureStream stream = new CaptureStream("STDOUT",label,System.out);
+//Direct messages to the Capture Stream
+System.setOut(stream);
+```
