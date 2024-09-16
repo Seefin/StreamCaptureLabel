@@ -1,5 +1,9 @@
 CaptureLabel
 ============
+This is a (essentially) a JLabel that displays the contents of an OutputStream
+as a String. This allows you to redirect standard output to the JLabel, and then
+display it line by line.
+
 This project came about as I needed a simple way to surface a single 
 line of text to the user if a debug flag was set, rather than asking
 them to spin up the application in a terminal.
